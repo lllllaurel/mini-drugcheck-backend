@@ -5,6 +5,7 @@ import datetime
 import os 
 import sys
 
+ROOT_DIR = os.path.dirname(__file__)
 
 def BitCount1(n):
     bin_n = bin(n)
@@ -16,7 +17,7 @@ def GetNbit(x,n):
 def wirtelog(strwirte):
     nowtime = datetime.datetime.now()
     name_time = datetime.datetime.strftime(nowtime, '%Y%m%d')
-    fileopen = open(name_time,"a+")
+    fileopen = open(os.path.join(ROOT_DIR, name_time),"a+")
     fileopen.write(strwirte+"\n")
     fileopen.close()
 
@@ -32,9 +33,7 @@ def jsonToNum(jsonData):
     wirtelog(json.dumps(jsonData,ensure_ascii=False))
     return string_return
     #print(jsonToNum(jsonData)) 
-def judge(filename):
-    #print(filename)
-    jsonData = open(filename,"r").readline().replace("\n","")
+def judge(jsonData):
     number_json = jsonToNum(jsonData)
     #number_json = '0b1101'
     num10json = int(number_json , 2)
@@ -62,11 +61,3 @@ def judge(filename):
         else:
             string_output = "收集更多的信息"
     return(string_output)
-
-def main(argv):
-    print(judge(argv))
-
- 
-
-if __name__ == '__main__':
-    main(sys.argv[1])
