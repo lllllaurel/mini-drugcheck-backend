@@ -14,7 +14,9 @@ def GetNbit(x,n):
 #jsonData = {"1":1,"2":0,"3":1,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0,"14":0,"15":0,"16":0,"17":0,"18":0,"19":0,"20":0,"21":1,"22":0,"23":0,"24":{"1":0,"2":0,"3":0,"4":0}}
 
 def wirtelog(strwirte):
-    fileopen = open(str(datetime.datetime.now().year)+str(datetime.datetime.now().month.PadLeft(2,'0'))+str(datetime.datetime.now().day.PadLeft(2,'0')),"a+")
+    nowtime = datetime.datetime.now()
+    name_time = datetime.datetime.strftime(nowtime, '%Y%m%d')
+    fileopen = open(name_time,"a+")
     fileopen.write(strwirte+"\n")
     fileopen.close()
 
