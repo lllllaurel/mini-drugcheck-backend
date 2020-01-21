@@ -1,21 +1,31 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import main.judge_ques as Jg
+import main.judge_image as Img
+import main.utils as Utils
 import os
 
 app = Flask(__name__)
 
 @app.route('/')
 def helloworld():
-    return 'kj hello flask'
+    return 'welcome to drug check 小程序'
 
-@app.route('/mini/judge')
-def judge():
+@app.route('/mini/questionnaire')
+def questionnaire():
     args = request.args.get('paper')
     return Jg.judge(args)
 
-@app.route('/test')
+@app.route('/mini/recognition', methods=['GET', 'POST'])
+def recognition():  
+    openid = Utils.fetchOpenId()
+    image = request.files.get('file')
+    path_list = Utils.saveImage(image, openid)
+    return path_list[1]
+    # return Img.judgeimage(path_list[0], path_list[1])
+
+@app.route('/mini/test')
 def test():
-    return os.path.join(__file__,'static')
+    return render_template('test.html')
 
 if __name__ == '__main__':
     # 服务器配置

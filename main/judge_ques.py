@@ -2,10 +2,10 @@
 #!/usr/bin/python
 import json
 import datetime
-import os 
-import sys
+import os, sys
+import main.utils as Utils
 
-ROOT_DIR = os.path.dirname(__file__)
+ROOT_DIR = Utils.rootPath()
 
 def BitCount1(n):
     bin_n = bin(n)
@@ -17,7 +17,7 @@ def GetNbit(x,n):
 def wirtelog(strwirte):
     nowtime = datetime.datetime.now()
     name_time = datetime.datetime.strftime(nowtime, '%Y%m%d')
-    fileopen = open(os.path.join(ROOT_DIR, name_time),"a+")
+    fileopen = open(os.path.join(ROOT_DIR, 'log',name_time),"a+")
     fileopen.write(strwirte+"\n")
     fileopen.close()
 
