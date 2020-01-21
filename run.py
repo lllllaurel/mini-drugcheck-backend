@@ -15,13 +15,13 @@ def questionnaire():
     args = request.args.get('paper')
     return Jg.judge(args)
 
-@app.route('/mini/recognition', methods=['GET', 'POST'])
-def recognition():  
-    openid = Utils.fetchOpenId()
-    image = request.files.get('file')
-    path_list = Utils.saveImage(image, openid)
-    return path_list[1]
-    # return Img.judgeimage(path_list[0], path_list[1])
+# @app.route('/mini/recognition', methods=['GET', 'POST'])
+# def recognition():  
+#     openid = Utils.fetchOpenId()
+#     image = request.files.get('file')
+#     path_list = Utils.saveImage(image, openid)
+#     return path_list[1]
+#     # return Img.judgeimage(path_list[0], path_list[1])
 
 @app.route('/mini/test')
 def test():
