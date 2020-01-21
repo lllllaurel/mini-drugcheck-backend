@@ -1,5 +1,5 @@
 import numpy as np
-# import cv2
+import cv2
 import os, sys 
 import main.utils as Utils
 
@@ -48,8 +48,3 @@ def judgeimage(image,image_output):
         if len(boxes)>= 3 or len(boxes)<1:
             string_return = "样本质量不佳，重新采样"
     return string_return
-
-if __name__ == '__main__':
-    # main(sys.argv)
-    private_key = 'jujiao_test'
-    image = 'jujiao_before.jpg'
