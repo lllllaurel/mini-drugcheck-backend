@@ -3,4 +3,4 @@
 virtualenv-3 .venv
 source .venv/bin/activate
 pip3 install flask
-pm2 start -s --name=hello run.py
+pm2 start -s --name=run run.py
