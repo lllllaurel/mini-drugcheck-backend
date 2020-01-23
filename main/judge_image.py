@@ -9,7 +9,7 @@ def judgeimage(image,image_output):
     #image 待处理图片文件名， image_output 处理后文件名
     save_image = os.path.join(ROOT_DIR, 'static', 'upload', image_output)
     #设定颜色HSV范围，假定为红色
-    redLower = np.array([156, 43, 46])
+    redLower = np.array([130, 20, 20])
     redUpper = np.array([179, 255, 255])
 
     #读取图像
@@ -30,7 +30,7 @@ def judgeimage(image,image_output):
 
     #获取图像轮廓坐标，其中contours为坐标值，此处只检测外形轮廓
     contours, hierarchy = cv2.findContours(dilation, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    string_return = ""
+    string_return = "样本质量不佳，重新采样"
     if len(contours) > 0:
         #cv2.boundingRect()返回轮廓矩阵的坐标值，四个值为x, y, w, h， 其中x, y为左上角坐标，w,h为矩阵的宽和高
         boxes = [cv2.boundingRect(c) for c in contours]

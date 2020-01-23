@@ -1,0 +1,15 @@
+
+<div class='mini-upload' id='mini-upload-div' style="width: 1000px; height: 100px; margin: 100px auto auto auto;">
+    <form method="POST" action="/mini/recognition" enctype="multipart/form-data" id="file">
+        <input type="file" name="file" accept="image/gif, image/jpeg, image/png, image/jpg">
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<div class='mini-body' style="width: 1000px; margin: 10px auto auto auto;">
+    <div class="mini-preview-origin" style="width: 500px; height: 600px; margin: auto auto auto auto;float:left;border-bottom:1px solid #000">
+        <img src="../static/upload/test_open_id_before.jpg" alt="原始图片">
+    </div> 
+    <div class="mini-preview-processed" style="width: 500px; height: 600px; margin: auto auto auto auto;float:right; border-bottom:1px solid #000">
+        <img src="../static/upload/test_open_id_after.jpg" alt="">
+    </div> 
+</div>
