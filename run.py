@@ -28,7 +28,7 @@ def recognition():
 #图像识别测试模块
 @app.route('/mini/recognition/test')
 def recognition_test():
-    return Mock.recognition_test()
+    return Mock.recognition_test(request)
 #整体测试路由
 @app.route('/mini/test')
 def test():
@@ -38,6 +38,3 @@ def test():
 if __name__ == '__main__':
     # 服务器配置
     app.run(host="0.0.0.0", port=3000, debug=True, threaded=True)
-
-    # local配置
-    # app.run(debug=True)
