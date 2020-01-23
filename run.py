@@ -25,6 +25,10 @@ def recognition():
     image = request.files.get('file')
     path_list = Utils.saveImage(image, openid)
     return Img.judgeimage(path_list[0], path_list[1])
+#重定向到图像识别测试模块
+@app.route('/mini/recognition/front')
+def test():
+    return render_template('drugcheck.html')
 #图像识别测试模块
 @app.route('/mini/recognition/test')
 def recognition_test():

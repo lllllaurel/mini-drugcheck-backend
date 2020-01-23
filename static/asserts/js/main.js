@@ -44,7 +44,7 @@ function main() {
 
   //重定向到drug check测试程序
   $("#redirect-to-drugcheck").click(function (e) {
-    window.location.href = "/mini/recognition/test";
+    window.location.href = "/mini/recognition/front";
   })
 
 }());
