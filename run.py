@@ -27,7 +27,7 @@ def recognition():
     return Img.judgeimage(path_list[0], path_list[1])
 #重定向到图像识别测试模块
 @app.route('/mini/recognition/front')
-def test():
+def recognition_front():
     return render_template('drugcheck.html')
 #图像识别测试模块
 @app.route('/mini/recognition/test')
