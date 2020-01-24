@@ -30,9 +30,9 @@ def recognition():
 def recognition_front():
     return render_template('drugcheck.html')
 #图像识别测试模块
-@app.route('/mini/recognition/test')
+@app.route('/mini/recognition/test', methods=['GET', 'POST'])
 def recognition_test():
-    return Mock.recognition_test(request)
+    return Mock.recognition_test(request, render_template)
 #整体测试路由
 @app.route('/mini/test')
 def test():

@@ -5,11 +5,13 @@
         <input type="submit" value="Submit">
     </form>
 </div>
+{%if origin and after%}
 <div class='mini-body' style="width: 1000px; margin: 10px auto auto auto;">
     <div class="mini-preview-origin" style="width: 500px; height: 600px; margin: auto auto auto auto;float:left;border-bottom:1px solid #000">
-        <img src="../static/upload/test_before.jpg" alt="原始图片">
+        <img src="{{origin}}" alt="原始图片">
     </div> 
     <div class="mini-preview-processed" style="width: 500px; height: 600px; margin: auto auto auto auto;float:right; border-bottom:1px solid #000">
-        <img src="../static/upload/test_after.jpg" alt="">
+        <img src="{{after}}" alt="转换后图片">
     </div> 
 </div>
+{%endif%}
