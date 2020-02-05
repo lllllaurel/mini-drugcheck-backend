@@ -9,18 +9,43 @@ from main.WXBizDataCrypt import WXBizDataCrypt
 
 app = Flask(__name__)
 
-#index
+'''
+    官网
+'''
 @app.route('/')
 def admin():
     return render_template('admin.html')
+#整体测试路由
+@app.route('/mini/test')
+def test():
+    return Utils.regist('sfdsdf', '13333333333')
+#重定向到图像识别测试模块
+@app.route('/mini/recognition/front')
+def recognition_front():
+    return render_template('drugcheck.html')
+#图像识别测试模块
+@app.route('/mini/recognition/test', methods=['GET', 'POST'])
+def recognition_test():
+    return Mock.recognition_test(request, render_template)
 
-#drugcheck 路由
+
+
+
+'''
+    questionnaire
+'''
 #调查问卷
 @app.route('/mini/questionnaire')
 def questionnaire():
     args = request.args.get('paper')
+    app.logger.info(args)
     return Jg.judge(args)
 
+
+
+'''
+    drug
+'''
 #图像识别
 @app.route('/mini/recognition', methods=['GET', 'POST'])
 def recognition():  
@@ -29,11 +54,10 @@ def recognition():
     path_list = Utils.saveImage(image, openid)
     return Img.judgeimage(path_list[0], path_list[1])
 
-#重定向到图像识别测试模块
-@app.route('/mini/recognition/front')
-def recognition_front():
-    return render_template('drugcheck.html')
 
+'''
+    public
+'''
 #登陆获取openid和sessionKey
 @app.route('/mini/loginstatus')
 def login_status():
@@ -44,8 +68,8 @@ def login_status():
     else:
         return r 
 
-#drug小程序注册
-@app.route('/mini/drug/regist', methods=['GET', 'POST'])
+#小程序注册
+@app.route('/mini/regist', methods=['GET', 'POST'])
 def drug_regist():
     params = json.loads(request.get_data(as_text=True))
     appid = params['appid']
@@ -57,17 +81,6 @@ def drug_regist():
     un_data = pc.decrypt(en_data, iv)
     return Utils.regist(openid, un_data['phoneNumber'])
     
-
-#图像识别测试模块
-@app.route('/mini/recognition/test', methods=['GET', 'POST'])
-def recognition_test():
-    return Mock.recognition_test(request, render_template)
-
-#整体测试路由
-@app.route('/mini/test')
-def test():
-    return Utils.regist('sfdsdf', '13333333333')
-
 
 if __name__ == '__main__':
     # 服务器配置
