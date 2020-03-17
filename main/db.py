@@ -11,6 +11,7 @@ class DB():
         self.conn.row_factory = sqlite3.Row
         self.c = self.conn.cursor()
 
+    #检查是否已完成注册
     def is_registed(self, openid):
         if openid is None or len(openid) < 1:
             return None 
@@ -23,10 +24,12 @@ class DB():
         except Exception as err:
             raise Exception(err)
         return None if row is None else tuple(row)[2]
-
+    
     def regist(self, openid, phone):
         if openid is None or phone is None:
             raise Exception('Invalid Params')
+        if self.is_registed(openid) is not None:
+            return '200'
         sql = "insert into drugs(openid, phone) values('%s', '%s')"%(openid, phone)
         try:
             cur = self.c.execute(sql)
