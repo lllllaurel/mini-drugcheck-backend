@@ -18,7 +18,13 @@ def admin():
 #整体测试路由
 @app.route('/mini/test')
 def test():
-    return Utils.regist('sfdsdf', '13333333333')
+    d = db.DB()
+    r = d.already_in('sfdasdf', '13333333333')
+    if r is None:
+        return "None"
+    else:
+        return r['phone']
+    return ('sfdsdf', '13333333333')
 #重定向到图像识别测试模块
 @app.route('/mini/recognition/front')
 def recognition_front():
@@ -38,7 +44,6 @@ def recognition_test():
 @app.route('/mini/questionnaire')
 def questionnaire():
     args = request.args.get('paper')
-    app.logger.info(args)
     return Jg.judge(args)
 
 
