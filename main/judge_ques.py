@@ -33,9 +33,7 @@ def jsonToNum(jsonData):
     wirtelog(json.dumps(jsonData,ensure_ascii=False))
     return string_return
     #print(jsonToNum(jsonData)) 
-def judge(filename):
-    #print(filename)
-    jsonData = open(filename,"r").readline().replace("\n","")
+def judge(jsonData):
     number_json = jsonToNum(jsonData)
     #number_json = '0b1101'
     num10json = int(number_json , 2)
