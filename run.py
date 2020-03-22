@@ -10,7 +10,8 @@ from main.WXBizDataCrypt import WXBizDataCrypt
 app = Flask(__name__)
 
 '''
-    官网
+@project: 官网
+@author: Laurel
 '''
 @app.route('/')
 def admin():
@@ -35,10 +36,10 @@ def recognition_test():
     return Mock.recognition_test(request, render_template)
 
 
-
-
 '''
-    questionnaire
+@project: questionnaire
+@author: Laurel
+@updated_at: 20200322
 '''
 #调查问卷
 @app.route('/mini/questionnaire')
@@ -46,10 +47,10 @@ def questionnaire():
     args = request.args.get('paper')
     return Jg.judge(args)
 
-
-
 '''
-    drug
+@project: drug check image recognition
+@author: Laurel
+@updated_at: -
 '''
 #图像识别
 @app.route('/mini/recognition', methods=['GET', 'POST'])
@@ -59,6 +60,13 @@ def recognition():
     path_list = Utils.saveImage(image, openid)
     return Img.judgeimage(path_list[0], path_list[1])
 
+#上传个人信息
+@app.route('/mini/recognition/information', methods=['POST'])
+def recognitionInformation():
+    params = json.loads(request.get_data(as_text=True))
+    information = params['information']
+    app.logger.info(information)
+    return ''
 
 '''
     public

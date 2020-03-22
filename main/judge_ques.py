@@ -28,7 +28,7 @@ def jsonToNum(jsonData):
     for i in range(1,24):
         string_return += str(text[str(i)])
     text_list =  (text["24"])
-    for i in range(1,5):
+    for i in range(1,7):
         string_return += str(text_list[str(i)])
     wirtelog(json.dumps(jsonData,ensure_ascii=False))
     return string_return
