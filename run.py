@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 import main.judge_ques as Jg
 import main.judge_image as Img
 import main.utils as Utils
@@ -6,6 +6,7 @@ import main.mock as Mock
 import os,json
 import main.db as db 
 from main.WXBizDataCrypt import WXBizDataCrypt
+from config.conf import Remote
 
 app = Flask(__name__)
 
@@ -63,10 +64,15 @@ def recognition():
 #上传个人信息
 @app.route('/mini/recognition/information', methods=['POST'])
 def recognitionInformation():
+    import requests, urllib
+    app.config.from_object(Remote)
     params = json.loads(request.get_data(as_text=True))
     information = params['information']
-    app.logger.info(information)
-    return ''
+    try:
+        requests.post(url = app.config['RECORD_INFO'], data = information)
+    except Exception as e:
+        return jsonify({'responseCode': 500})
+    return jsonify({'responseCode': 200})
 
 '''
     public
